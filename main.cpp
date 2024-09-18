@@ -75,83 +75,48 @@ int kmpPos(string &t, string &p){ // knuth-morris-pratt function that returns th
 
 }
 
-
-int main() {
-
-
-    // Read the transmission1 file
-    string filePath1 = " transmission1.txt";
-    ifstream file1(filePath1);
-    if(!file1.is_open()){
-        cerr << "failed to open the file: " << filePath1 << endl;
-        return 1;
+string readFile(string filePath) {
+    ifstream file(filePath);
+    if(!file.is_open()){
+        cerr << "failed to open the file: " << filePath << endl;
     }
-    string t1;
-    stringstream buffer1;
-    buffer1 << file1.rdbuf();  // Read all the content in the file
-    t1 = buffer1.str();  // Convert the content of the buffer into a string
-    file1.close();
+    string text;
+    stringstream buffer;
+    buffer << file.rdbuf();  // Read all the content in the file
+    text = buffer.str();  // Convert the content of the buffer into a string
+    file.close();
+    return text;
+}
+
+
+int main() { // Main function
+    // Read the transmission1 file
+    string filePath1 = "transmission1.txt";
+    string t1 = readFile(filePath1);
     t1.erase(remove(t1.begin(),t1.end(), '\n'), t1.end()); // this is a preventive function in which we convert the transmission string we made into a single line string
 
 
 
     // Read the transmission2 file
-    string filePath2 = " transmission2.txt";
-    ifstream file2(filePath2);
-    if(!file2.is_open()){
-        cerr << "failed to open the file: " << filePath2 << endl;
-        return 1;
-    }
-    string t2;
-    stringstream buffer2;
-    buffer2 << file2.rdbuf();  // Read all the content in the file
-    t2 = buffer2.str();  // Convert the content of the buffer into a string
-    file2.close();
+    string filePath2 = "transmission2.txt";
+    string t2 = readFile(filePath2);
     t2.erase(remove(t2.begin(),t2.end(), '\n'), t2.end());
 
 
     // Read the first mcode file
     string filePath3 = "mcode1.txt";
-    ifstream file3(filePath3);
-    if(!file3.is_open()){
-        cerr << "failed to open the file: " << filePath3 << endl;
-        return 1;
-    }
-    string m1;
-    stringstream buffer3;
-    buffer3 << file3.rdbuf();  // Read all the content in the file
-    m1 = buffer3.str();  // Convert the content of the buffer into a string
-    file3.close();
-
+    string m1 = readFile(filePath3);
 
 
     // Read the second mcode file
     string filePath4 = "mcode2.txt";
-    ifstream file4(filePath4);
-    if(!file4.is_open()){
-        cerr << "failed to open the file: " << filePath4 << endl;
-        return 1;
-    }
-    string m2;
-    stringstream buffer4;
-    buffer4 << file4.rdbuf();  // Read all the content in the file
-    m2 = buffer4.str(); // Convert the content of the buffer into a string
-    file4.close();
+    string m2 = readFile(filePath4);
 
 
 
     // Read the third mcode file
     string filePath5 = "mcode3.txt";
-    ifstream file5(filePath5);
-    if(!file5.is_open()){
-        cerr << "failed to open the file: " << filePath5 << endl;
-        return 1;
-    }
-    string m3;
-    stringstream buffer5;
-    buffer5 << file5.rdbuf();  // Read all the content in the file
-    m3 = buffer5.str();  // Convert the content of the buffer into a string
-    file5.close();
+    string m3 = readFile(filePath5);
 
 
     // First part of the project; Return a "true/false" of there is a mcode inside a transmission
