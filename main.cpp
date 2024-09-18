@@ -18,7 +18,8 @@ vector<int> funcLPS(string &p){ // Longest prefix function
     while(i < m){ // we determine our limit which is the length of the pattern.
         if(p[i] == p[j]){ // then we compare as I said.
             lps[i] = j+1; // if the condition is true we assign a number that constantly increases if this condition keeps entering.
-            i++ , j++;
+            i++;
+            j++;
         }else if(j > 0){ // if the past condition is not true then we check that j is bigger than 0.
             j = lps[j-1]; // if it's still 0 then we assign it the value of the previous value on the array we are completing.
         }else{ // if none of the above statements is done, we do the next steps.
@@ -38,7 +39,8 @@ bool kmpBool(string &t, string &p){ // knuth-morris-pratt function that returns 
     while(i < n){
 
         if(t[i] == p[j]){
-            i++, j++;
+            i++;
+            j++;
         }
 
         if(j == m) {
@@ -65,7 +67,8 @@ int kmpPos(string &t, string &p){ // knuth-morris-pratt function that returns th
             if(j == m-1){
                 return i-m+1;
             }
-            i++,j++;
+            i++;
+            j++;
         }else if(j > 0){
             j = lps[j+1];
         }else{
@@ -77,8 +80,8 @@ int kmpPos(string &t, string &p){ // knuth-morris-pratt function that returns th
 
 vector<int> expandPal(string& t, int left, int right){
     while(left >= 0 && right < t.length() && t[left] == t[right]){
-        left = left-1;
-        right = right+1;
+        left--;
+        right++;
     }
     vector<int> palindrome = {right - left - 1, left + 1, right - 1};
     return palindrome;
@@ -125,24 +128,18 @@ int main() { // Main function
     string t1 = readFile(filePath1);
     t1.erase(remove(t1.begin(),t1.end(), '\n'), t1.end()); // this is a preventive function in which we convert the transmission string we made into a single line string
 
-
-
     // Read the transmission2 file
     string filePath2 = "transmission2.txt";
     string t2 = readFile(filePath2);
     t2.erase(remove(t2.begin(),t2.end(), '\n'), t2.end());
 
-
     // Read the first mcode file
     string filePath3 = "mcode1.txt";
     string m1 = readFile(filePath3);
 
-
     // Read the second mcode file
     string filePath4 = "mcode2.txt";
     string m2 = readFile(filePath4);
-
-
 
     // Read the third mcode file
     string filePath5 = "mcode3.txt";
@@ -151,7 +148,6 @@ int main() { // Main function
 
     // First part of the project; Return a "true/false" of there is a mcode inside a transmission
     //                            followed by a space and the position where it is.
-
     cout << "transmission1 comparison with mcodes: \n";
     cout << "mcode1: \n";
     if(kmpBool(t1, m1)){ // if statement to determine whether the mcode is found in the transmission, we use our bool kmp function.
@@ -198,7 +194,6 @@ int main() { // Main function
 
 
     // Second part of the project; Return the initial and ending position of the longest palindromic string
-
     cout << "Position of the longest palindromic string in transmission1: \n";
     vector<int> palT1 = longestPalindrome(t1);
     cout << palT1[1] << " " << palT1[2] << endl << endl;
@@ -208,5 +203,4 @@ int main() { // Main function
     cout<< palT2[1] << " " << palT2[2] << endl << endl;
 
     return 0;
-
 }
