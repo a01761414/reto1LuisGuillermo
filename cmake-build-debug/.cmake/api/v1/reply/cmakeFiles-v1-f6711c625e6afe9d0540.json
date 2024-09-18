@@ -16,7 +16,12 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.28.1/CMakeSystem.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.28.6/CMakeSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeMinGWFindMake.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -285,7 +290,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.28.1/CMakeCCompiler.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.28.6/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -539,7 +544,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.28.1/CMakeCXXCompiler.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.28.6/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -565,6 +570,21 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Program Files/JetBrains/CLion 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeFindCodeBlocks.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/ProcessorCount.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -613,7 +633,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.28.1/CMakeRCCompiler.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.28.6/CMakeRCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -692,7 +712,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.28.1/CMakeCCompiler.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.28.6/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -791,7 +811,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.28.1/CMakeCXXCompiler.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.28.6/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -802,8 +822,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/Users/alexm_edaf63h/Documents/Escuela/Semestre5/Algoritmos/reto1LuisGuillermo/cmake-build-debug",
-		"source" : "C:/Users/alexm_edaf63h/Documents/Escuela/Semestre5/Algoritmos/reto1LuisGuillermo"
+		"build" : "C:/Users/jorge/Documents/algorithms/reto1LuisGuillermo/cmake-build-debug",
+		"source" : "C:/Users/jorge/Documents/algorithms/reto1LuisGuillermo"
 	},
 	"version" : 
 	{

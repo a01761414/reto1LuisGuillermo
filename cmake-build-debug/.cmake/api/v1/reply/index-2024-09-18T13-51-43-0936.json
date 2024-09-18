@@ -4,7 +4,7 @@
 		"generator" : 
 		{
 			"multiConfig" : false,
-			"name" : "Ninja"
+			"name" : "MinGW Makefiles"
 		},
 		"paths" : 
 		{
@@ -18,15 +18,15 @@
 			"isDirty" : false,
 			"major" : 3,
 			"minor" : 28,
-			"patch" : 1,
-			"string" : "3.28.1",
+			"patch" : 6,
+			"string" : "3.28.6",
 			"suffix" : ""
 		}
 	},
 	"objects" : 
 	[
 		{
-			"jsonFile" : "codemodel-v2-3f46eacc495dcf5e3859.json",
+			"jsonFile" : "codemodel-v2-c580176547df5f91daaf.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -35,7 +35,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cache-v2-bf302aea2f34293b59b0.json",
+			"jsonFile" : "cache-v2-213f15ffaa0c907a19b1.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -44,7 +44,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cmakeFiles-v1-df87e7ed83e6c3ece708.json",
+			"jsonFile" : "cmakeFiles-v1-f6711c625e6afe9d0540.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -53,7 +53,7 @@
 			}
 		},
 		{
-			"jsonFile" : "toolchains-v1-048c58cdcfa38ecd57f9.json",
+			"jsonFile" : "toolchains-v1-140f48578653d0255cbc.json",
 			"kind" : "toolchains",
 			"version" : 
 			{
@@ -66,7 +66,7 @@
 	{
 		"cache-v2" : 
 		{
-			"jsonFile" : "cache-v2-bf302aea2f34293b59b0.json",
+			"jsonFile" : "cache-v2-213f15ffaa0c907a19b1.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -76,7 +76,7 @@
 		},
 		"cmakeFiles-v1" : 
 		{
-			"jsonFile" : "cmakeFiles-v1-df87e7ed83e6c3ece708.json",
+			"jsonFile" : "cmakeFiles-v1-f6711c625e6afe9d0540.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -86,7 +86,7 @@
 		},
 		"codemodel-v2" : 
 		{
-			"jsonFile" : "codemodel-v2-3f46eacc495dcf5e3859.json",
+			"jsonFile" : "codemodel-v2-c580176547df5f91daaf.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -96,7 +96,7 @@
 		},
 		"toolchains-v1" : 
 		{
-			"jsonFile" : "toolchains-v1-048c58cdcfa38ecd57f9.json",
+			"jsonFile" : "toolchains-v1-140f48578653d0255cbc.json",
 			"kind" : "toolchains",
 			"version" : 
 			{
