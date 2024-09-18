@@ -75,6 +75,36 @@ int kmpPos(string &t, string &p){ // knuth-morris-pratt function that returns th
 
 }
 
+vector<int> expandPal(string& t, int left, int right){
+    while(left >= 0 && right < t.length() && t[left] == t[right]){
+        left = left-1;
+        right = right+1;
+    }
+    vector<int> palindrome = {right - left - 1, left + 1, right - 1};
+    return palindrome;
+}
+
+vector<int> maxPal(vector<int> palOdd, vector<int> palEven, vector<int> longPal){
+    if(palOdd[0] > longPal[0]){
+        longPal = palOdd;
+    }
+    if(palEven[0] > longPal[0]){
+        longPal = palEven;
+    }
+    return longPal;
+}
+
+vector<int> longestPalindrome(string& t){
+    int n = t.length();
+    vector<int> longPal(3,0);
+    for(int i = 0; i < n; i++){
+        vector<int> palOdd = expandPal(t, i, i);
+        vector<int> palEven = expandPal(t, i, i+1);
+        longPal = maxPal(palOdd, palEven, longPal);
+    }
+    return longPal;
+}
+
 string readFile(string filePath) {
     ifstream file(filePath);
     if(!file.is_open()){
@@ -165,6 +195,18 @@ int main() { // Main function
     }else{
         cout << "false" << endl << endl;
     }
+
+
+    // Second part of the project; Return the initial and ending position of the longest palindromic string
+
+    cout << "Position of the longest palindromic string in transmission1: \n";
+    vector<int> palT1 = longestPalindrome(t1);
+    cout << palT1[1] << " " << palT1[2] << endl << endl;
+
+    cout << "Position of the longest palindromic string in transmission2: \n";
+    vector<int> palT2 = longestPalindrome(t2);
+    cout<< palT2[1] << " " << palT2[2] << endl << endl;
+
     return 0;
 
 }
