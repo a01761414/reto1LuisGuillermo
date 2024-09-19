@@ -140,6 +140,43 @@ pair<int, int> longestCommonSubstring(const string &s1, const string &s2) {
     return make_pair(startPos + 1, endPos + 1); // Convertir a base 1
 }
 
+pair<int, int> longestPalindromeManacher(const string &s) {
+    string t = "^#";
+    for (size_t i = 0; i < s.length(); ++i) {
+        t += s[i];
+        t += '#';
+    }
+    t += '$';
+
+    int n = t.length();
+    vector<int> p(n, 0);
+    int center = 0, right = 0;
+
+    for (int i = 1; i < n - 1; ++i) {
+        int mirror = 2 * center - i;
+        if (right > i) {
+            p[i] = min(right - i, p[mirror]);
+        }
+        while (t[i + p[i] + 1] == t[i - p[i] - 1]) {
+            ++p[i];
+        }
+        if (i + p[i] > right) {
+            center = i;
+            right = i + p[i];
+        }
+    }
+
+    int maxLength = 0, start = 0;
+    for (int i = 1; i < n - 1; ++i) {
+        if (p[i] > maxLength) {
+            maxLength = p[i];
+            start = (i - p[i]) / 2; 
+        }
+    }
+
+    return make_pair(start + 1, start + maxLength);
+}
+
 int main() {
     string filePath1 = "transmission1.txt";
     string t1 = readFile(filePath1);
@@ -155,7 +192,10 @@ int main() {
     string filePath4 = "mcode2.txt";
     string m2 = readFile(filePath4);
 
-    string filePath5 = "mcode3.txt";
+    string filePath5 = "test.txt";
+    string testing = readFile(filePath5);
+
+    string filePath6 = "mcode3.txt";
     string m3 = readFile(filePath5);
 
     cout << "transmission1 comparison with mcodes: \n";
@@ -202,21 +242,27 @@ int main() {
         cout << "false" << endl << endl;
     }
 
-    cout << "Position of the longest palindromic string in transmission1: \n";
-    vector<int> palT1 = longestPalindrome(t1);
-    cout << palT1[1] << " " << palT1[2] << endl << endl;
 
-    cout << "Position of the longest palindromic string in transmission2: \n";
-    vector<int> palT2 = longestPalindrome(t2);
-    cout << palT2[1] << " " << palT2[2] << endl << endl;
+    vector<int> pal = longestPalindrome(t1);
+    cout << "Longest Palindrome in transmission1 using expansion: " << t1.substr(pal[1], pal[0]) << endl;
+    cout << "Position: " << pal[1] << "   Length: "<< pal[0]<<endl;
 
-    cout << "Position of the longest common substring in transmissions: \n";
-    pair<int, int> common = longestCommonSubstring(t1, t2);
-    cout << common.first << " " << common.second << endl;
+    vector<int> pal2 = longestPalindrome(t2);
+    cout << "Longest Palindrome in transmission2 using expansion: " << t2.substr(pal2[1], pal2[0]) << endl;
+    cout << "Position: " << pal2[1] << "   Length:  "<< pal2[0]<<endl;
+
+    pair<int, int> lps = longestPalindromeManacher(t1);
+    cout << "Longest Palindrome in transmission1 using Manacher: " << t1.substr(lps.first - 1, lps.second - lps.first + 1) << endl;
+    cout << "Position: " << lps.first-1 << "   Length: "<< lps.second - lps.first + 1 <<endl;
+
+    pair<int, int> lps2 = longestPalindromeManacher(t2);
+    cout << "Longest Palindrome in transmission2 using Manacher: " << t2.substr(lps2.first - 1, lps2.second - lps2.first + 1) << endl;
+    cout << "Position: " << lps2.first-1 << "   Length: "<< lps2.second - lps2.first + 1 <<endl;
 
 
-    string commonSubstring = t1.substr(common.first - 1, common.second - common.first + 1);
-    cout << "Longest common substring: " << commonSubstring << endl;
+    pair<int, int> lcs = longestCommonSubstring(t1, t2);
+    cout << "Longest common substring between transmission1 and transmission2: " << t1.substr(lcs.first - 1, lcs.second - lcs.first + 1) << endl;
+
 
     return 0;
 }
