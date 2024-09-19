@@ -49,34 +49,6 @@ vector<int> funcLPS(string &p) {
     return lps;
 }
 
-bool kmpBool(string &t, string &p) {
-    // Complejidad: O(n + m) donde n es la longitud del texto 't' y m es la longitud del patrón 'p'.
-    // Descripción: Implementa el algoritmo KMP para verificar si el patrón 'p' se encuentra dentro del texto 't'.
-
-    int m = p.length(), n = t.length(); // Longitud del patrón y del texto
-    vector<int> lps = funcLPS(p); // Calcula el array LPS (Longest Prefix Suffix) para el patrón 'p'
-    int i = 0, j = 0; 
-
-    // Bucle principal que recorre el texto 't' para buscar el patrón 'p'.
-    while (i < n) {
-        if (t[i] == p[j]) { // Caso 1: Los caracteres de 't' e 'p' coinciden.
-            i++;
-            j++;
-        }
-
-        if (j == m) { // Caso 2: Si 'j' ha alcanzado el final del patrón, significa que se ha encontrado el patrón en el texto.
-            return true;
-        } else if (i < n && p[j] != t[i]) {  // Caso 3: Si los caracteres no coinciden y aún no hemos recorrido todo el texto.
-            if (j != 0) {
-                j = lps[j - 1];
-            } else {
-                i++;
-            }
-        }
-    }
-    return false; // Si se recorre todo el texto sin encontrar el patrón, retorna falso.
-}
-
 int kmpPos(string &t, string &p) {
     // Complejidad: O(n + m) donde n es la longitud del texto 't' y m es la longitud del patrón 'p'.
     // Descripción: Utiliza el algoritmo KMP para encontrar la posición de inicio del patrón 'p' en el texto 't'. 
@@ -175,6 +147,14 @@ pair<int, int> longestCommonSubstring(const string &s1, const string &s2) {
     return make_pair(startPos + 1, endPos + 1); // Convertir a base 1
 }
 
+void isMcode(int pos) {
+    if (pos != -1) {
+        cout << "   " << "true" << " " << pos << endl;
+    } else {
+        cout << "   " << "false" << endl;
+    }
+}
+
 int main() {
     string t1 = readFile("transmission1.txt");
     t1.erase(remove(t1.begin(), t1.end(), '\n'), t1.end());
@@ -186,63 +166,24 @@ int main() {
     string m2 = readFile("mcode2.txt");
     string m3 = readFile("mcode3.txt");
 
-    cout << "\ntransmission1 comparison with mcodes: \n";
-    cout << "- mcode1: \n";
-    if (kmpBool(t1, m1)) {
-        cout << "  " << "true" << " pos:" << kmpPos(t1, m1) << endl;
-    } else {
-        cout << "  " << "false" << endl;
-    }
+    cout << "parte 1" << endl;
+    isMcode(kmpPos(t1, m1));
+    isMcode(kmpPos(t1, m2));
+    isMcode(kmpPos(t1, m3));
+    isMcode(kmpPos(t2, m1));
+    isMcode(kmpPos(t2, m2));
+    isMcode(kmpPos(t2, m3));
 
-    cout << "- mcode2: \n";
-    if (kmpBool(t1, m2)) {
-        cout << "  " << "true" << " pos:" << kmpPos(t1, m2) << endl;
-    } else {
-        cout << "  " << "false" << endl;
-    }
-
-    cout << "- mcode3: \n";
-    if (kmpBool(t1, m3)) {
-        cout << "  " << "true" << " pos:" << kmpPos(t1, m3) << endl;
-    } else {
-        cout << "  " << "false" << endl;
-    }
-
-    cout << "\ntransmission2 comparison with mcodes: \n";
-    cout << "- mcode1: \n";
-    if (kmpBool(t2, m1)) {
-        cout << "  " << "true" << " pos:" << kmpPos(t2, m1) << endl;
-    } else {
-        cout << "  " << "false" << endl;
-    }
-
-    cout << "- mcode2: \n";
-    if (kmpBool(t2, m2)) {
-        cout << "  " << "true" << " pos:" << kmpPos(t2, m2) << endl;
-    } else {
-        cout << "  " << "false" << endl;
-    }
-
-    cout << "- mcode3: \n";
-    if (kmpBool(t2, m3)) {
-        cout << "  " << "true" << " pos:" << kmpPos(t2, m3) << endl << endl;
-    } else {
-        cout << "  " << "false" << endl << endl;
-    }
-
+    cout << "parte 2" << endl;
     pair<int, int> lps = longestPalindromeManacher(t1);
-    cout << "Longest Palindrome in transmission1 using Manacher: " << t1.substr(lps.first - 1, lps.second - lps.first + 1) << endl;
-    cout << "Position: " << lps.first-1 << "   Length: "<< lps.second - lps.first + 1 <<endl;
+    cout << "   " << lps.first-1 << " "<< lps.second-1 << endl;
 
     pair<int, int> lps2 = longestPalindromeManacher(t2);
-    cout << "Longest Palindrome in transmission2 using Manacher: " << t2.substr(lps2.first - 1, lps2.second - lps2.first + 1) << endl;
-    cout << "Position: " << lps2.first-1 << "   Length: "<< lps2.second - lps2.first + 1 <<endl;
-
-    cout << endl;
+    cout << "   " << lps2.first-1 << " "<< lps2.second-1 << endl;
 
     pair<int, int> lcs = longestCommonSubstring(t1, t2);
-    cout << "Longest common substring between transmission1 and transmission2: " << t1.substr(lcs.first - 1, lcs.second - lcs.first + 1) << endl << endl;
-
+    cout << "\nLongest common substring between transmission1 and transmission2: " << t1.substr(lcs.first - 1, lcs.second - lcs.first + 1) << endl;
+    cout << lcs.first-1 << " " << lcs.second-1 << endl;
 
     return 0;
 }
