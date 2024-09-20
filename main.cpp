@@ -119,33 +119,40 @@ pair<int, int> longestPalindromeManacher(const string &s) {
     return make_pair(start + 1, start + maxLength); // Devuelve un par de enteros: el inicio y el final (no inclusivo) del palíndromo más largo
 }
 
-pair<int, int> longestCommonSubstring(const string &s1, const string &s2) {
-    // Complejidad: O(n * m) donde n y m son las longitudes de las cadenas 's1' y 's2', respectivamente.
-    // Descripción: Encuentra la subcadena común más larga entre dos cadenas utilizando programación dinámica.
+pair<pair<int, int>, pair<int, int> > longestCommonSubstring(const string &s1, const string &s2) {
+    // Complejidad: O(n * m), donde 'n' es la longitud de 's1' y 'm' es la longitud de 's2'.
+    // Descripción: Esta función utiliza programación dinámica para encontrar la subcadena común más larga entre dos cadenas.
+    // La tabla 'dp' almacena la longitud de la subcadena común más larga que termina en las posiciones 'i-1' de 's1' y 'j-1' de 's2'.
+    // Además de la longitud, se guarda la posición final de dicha subcadena en ambas cadenas.
 
     int n = s1.length();
     int m = s2.length();
-    vector<vector<int> > dp(n + 1, vector<int>(m + 1, 0)); // 'dp[i][j]' almacena la longitud de la subcadena común más larga que termina en las posiciones 'i-1' de 's1' y 'j-1' de 's2'
-    int length = 0, endPos = 0;
-    // 'length' guarda la longitud de la subcadena común más larga encontrada.
-    // 'endPos' guarda la posición final de dicha subcadena en 's1'.
+    vector<vector<int> > dp(n + 1, vector<int>(m + 1, 0)); // DP table
+    int length = 0; // Longitud de la subcadena más larga
+    int endPos1 = 0; // Fin de la subcadena en s1
+    int endPos2 = 0; // Fin de la subcadena en s2
 
+    // Rellenar la tabla dp
     for (int i = 1; i <= n; ++i) {
         for (int j = 1; j <= m; ++j) {
             if (s1[i - 1] == s2[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1] + 1; // Si los caracteres coinciden, se extiende la longitud de la subcadena común previa (en 'dp[i-1][j-1]') sumando 1.
-                if (dp[i][j] > length) { // Si se encuentra una subcadena más larga, actualiza 'length' y guarda la posición de fin en 'endPos'
+                dp[i][j] = dp[i - 1][j - 1] + 1; // Extender subcadena común
+                if (dp[i][j] > length) { // Actualizar si encontramos una subcadena más larga
                     length = dp[i][j];
-                    endPos = i - 1;
+                    endPos1 = i - 1; // Fin en s1
+                    endPos2 = j - 1; // Fin en s2
                 }
             }
-            // Si los caracteres no coinciden, dp[i][j] se mantiene como 0, lo que indica que no hay subcadena común terminando en estas posiciones.
         }
     }
 
-    int startPos = endPos - length + 1;
-    return make_pair(startPos + 1, endPos + 1); // Convertir a base 1
+    int startPos1 = endPos1 - length + 1; // Inicio en s1
+    int startPos2 = endPos2 - length + 1; // Inicio en s2
+
+    return make_pair(make_pair(startPos1 + 1, endPos1 + 1), make_pair(startPos2 + 1, endPos2 + 1)); // Convertir a base 1
 }
+
+
 
 void isMcode(int pos) {
     if (pos != -1) {
@@ -181,9 +188,15 @@ int main() {
     pair<int, int> lps2 = longestPalindromeManacher(t2);
     cout << "   " << lps2.first-1 << " "<< lps2.second-1 << endl;
 
-    pair<int, int> lcs = longestCommonSubstring(t1, t2);
-    cout << "\nLongest common substring between transmission1 and transmission2: " << t1.substr(lcs.first - 1, lcs.second - lcs.first + 1) << endl;
-    cout << lcs.first-1 << " " << lcs.second-1 << endl;
+    cout << "parte 3" << endl;
+    pair<pair<int, int>, pair<int, int> > lcs = longestCommonSubstring(t1, t2);
+
+    //cout << t1.substr(lcs.first.first - 1, lcs.first.second - lcs.first.first + 1) << endl;
+
+    //En transmision 1
+    cout << "   " << lcs.first.first-1 << " " << lcs.first.second-1 << endl;
+    //En transmision 2
+    cout << "   " << lcs.second.first-1 << " " << lcs.second.second-1 << endl;
 
     return 0;
 }
