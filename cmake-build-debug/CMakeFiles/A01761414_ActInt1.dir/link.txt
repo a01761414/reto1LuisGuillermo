@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\A01761414_ActInt1.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\A01761414_ActInt1.dir/objects.a @CMakeFiles\A01761414_ActInt1.dir\objects1.rsp
-C:\msys64\mingw64\bin\c++.exe -g -Wl,--whole-archive CMakeFiles\A01761414_ActInt1.dir/objects.a -Wl,--no-whole-archive -o A01761414_ActInt1.exe -Wl,--out-implib,libA01761414_ActInt1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\A01761414_ActInt1.dir\linkLibs.rsp
