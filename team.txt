@@ -1,0 +1,29 @@
+Equipo:
+
+1. Jorge Iván Sánchez González - A01761414
+2. Alejandro Moncada Espinosa - A01638343
+3. Ana Camila Jiménez Mendoza - A01274422
+4. Santiago Gutiérrez González - A00572499
+
+Distribución de Tareas:
+
+Parte 1: Análisis de Códigos Maliciosos
+- Jorge Iván y Alejandro:
+  - Implementaron `readFile()`, con complejidad O(n), que abre y lee archivos de texto.
+  - Usaron el algoritmo KMP en `kmpPos()` para detectar secuencias maliciosas en las transmisiones, logrando O(n + m) en la búsqueda.
+
+Parte 2: Detección de Palíndromos
+- Jorge y Alejandro:
+  - Crearon una primera versión que utilizaba O(n²) para detectar palíndromos.
+  - Ana Camila y Santiago:
+    - Mejoraron el enfoque implementando `longestPalindromeManacher()`, aplicando el algoritmo de Manacher con complejidad O(n) para hallar el palíndromo más largo.
+    - Realizaron la salida de posiciones de palíndromos en `transmission1.txt` y `transmission2.txt`.
+
+Parte 3: Similitud entre Transmisiones
+- Ana Camila y Santiago:
+  - Desarrollaron `longestCommonSubstring()` usando programación dinámica, con complejidad O(n * m), para encontrar la subcadena común más larga.
+  - Reportaron las posiciones inicial y final de la subcadena común entre las transmisiones.
+
+Trabajo Conjunto:
+- Revisaron y optimizaron el archivo `main.cpp`.
+- Documentaron el proyecto, asegurando claridad en las funciones y métodos implementados.
