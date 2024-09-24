@@ -26,7 +26,7 @@ string readFile(string filePath) {
 }
 
 vector<int> funcLPS(string &p) {
-    // Complejidad: O(m) donde m es la longitud del patrón 'p'.
+    // Complejidad tiempo y espacio: O(m) donde m es la longitud del patrón 'p'.
     // Descripción: Calcula el array de prefijos más largos que también son sufijos (LPS) para el patrón 'p', 
     // lo que ayuda a optimizar el algoritmo KMP para buscar subcadenas.
 
@@ -50,7 +50,8 @@ vector<int> funcLPS(string &p) {
 }
 
 int kmpPos(string &t, string &p) {
-    // Complejidad: O(n + m) donde n es la longitud del texto 't' y m es la longitud del patrón 'p'.
+    // Complejidad tiempo: O(n + m) donde n es la longitud del texto 't' y m es la longitud del patrón 'p'.
+    // Para espacio la complejidad es de O(m)
     // Descripción: Utiliza el algoritmo KMP para encontrar la posición de inicio del patrón 'p' en el texto 't'. 
     // Si el patrón no se encuentra, devuelve -1.
     int m = p.length(), n = t.length();
@@ -74,7 +75,7 @@ int kmpPos(string &t, string &p) {
 }
 
 pair<int, int> longestPalindromeManacher(const string &s) {
-    // Complejidad: O(n) donde n es la longitud de la cadena 's'.
+    // Complejidad tiempo y espacio: O(n) donde n es la longitud de la cadena 's'.
     // Descripción: Implementa el algoritmo de Manacher para encontrar el palíndromo más largo en la cadena 's' en tiempo lineal.
 
     string t = "^#"; // 't' será la cadena modificada para Manacher. Se insertan caracteres especiales '^' al inicio y '$' al final,
@@ -120,7 +121,7 @@ pair<int, int> longestPalindromeManacher(const string &s) {
 }
 
 pair<pair<int, int>, pair<int, int> > longestCommonSubstring(const string &s1, const string &s2) {
-    // Complejidad: O(n * m), donde 'n' es la longitud de 's1' y 'm' es la longitud de 's2'.
+    // Complejidad de tiempo y espacio: O(n * m), donde 'n' es la longitud de 's1' y 'm' es la longitud de 's2'.
     // Descripción: Esta función utiliza programación dinámica para encontrar la subcadena común más larga entre dos cadenas.
     // La tabla 'dp' almacena la longitud de la subcadena común más larga que termina en las posiciones 'i-1' de 's1' y 'j-1' de 's2'.
     // Además de la longitud, se guarda la posición final de dicha subcadena en ambas cadenas.
@@ -154,49 +155,62 @@ pair<pair<int, int>, pair<int, int> > longestCommonSubstring(const string &s1, c
 
 
 
-void isMcode(int pos) {
+void isMcode(int pos, pair<int, int> files ) {
+    string contiene;
+    // Cuando es diferente de -1 sabemos que fue encontrado.
     if (pos != -1) {
-        cout << "   " << "true" << " " << pos << endl;
+        cout << "True ";
+        contiene = "SI";
     } else {
-        cout << "   " << "false" << endl;
+        cout <<  "False ";
+        contiene = "NO";
     }
+    cout<<"el archivo transmission"<<files.first<<".txt "<<contiene <<" contiene el codigo contenido en el archivo mcode"<<files.second<<".txt"<<endl;
 }
 
 int main() {
+    // Para ambos archivos nos cersioramos de eliminar los saltos de linea.
+    // Archivos de transmision. 
     string t1 = readFile("transmission1.txt");
     t1.erase(remove(t1.begin(), t1.end(), '\n'), t1.end());
 
     string t2 = readFile("transmission2.txt");
     t2.erase(remove(t2.begin(), t2.end(), '\n'), t2.end());
 
+    //Archivos de codigo malicioso.
     string m1 = readFile("mcode1.txt");
+    m1.erase(remove(m1.begin(), m1.end(), '\n'), m1.end());
+
     string m2 = readFile("mcode2.txt");
+    m2.erase(remove(m2.begin(), m2.end(), '\n'), m2.end());
+
     string m3 = readFile("mcode3.txt");
+    m3.erase(remove(m3.begin(), m3.end(), '\n'), m3.end());
 
-    cout << "parte 1" << endl;
-    isMcode(kmpPos(t1, m1));
-    isMcode(kmpPos(t1, m2));
-    isMcode(kmpPos(t1, m3));
-    isMcode(kmpPos(t2, m1));
-    isMcode(kmpPos(t2, m2));
-    isMcode(kmpPos(t2, m3));
+    cout << "---------------Parte 1---------------" << endl;
+    isMcode(kmpPos(t1, m1), {1, 1});
+    isMcode(kmpPos(t1, m2), {1, 2});
+    isMcode(kmpPos(t1, m3), {1, 3});
+    isMcode(kmpPos(t2, m1), {2, 1});
+    isMcode(kmpPos(t2, m2), {2, 2});
+    isMcode(kmpPos(t2, m3), {2, 3});
 
-    cout << "parte 2" << endl;
+
+    cout << "---------------Parte 2---------------" << endl;
     pair<int, int> lps = longestPalindromeManacher(t1);
-    cout << "   " << lps.first-1 << " "<< lps.second-1 << endl;
+    cout << "   " << lps.first << " "<< lps.second << endl;
 
     pair<int, int> lps2 = longestPalindromeManacher(t2);
-    cout << "   " << lps2.first-1 << " "<< lps2.second-1 << endl;
+    cout << "   " << lps2.first << " "<< lps2.second << endl;
 
-    cout << "parte 3" << endl;
+    cout << "---------------Parte 3---------------" << endl;
     pair<pair<int, int>, pair<int, int> > lcs = longestCommonSubstring(t1, t2);
 
-    //cout << t1.substr(lcs.first.first - 1, lcs.first.second - lcs.first.first + 1) << endl;
-
+    
     //En transmision 1
-    cout << "   " << lcs.first.first-1 << " " << lcs.first.second-1 << endl;
+    cout << "   " << lcs.first.first << " " << lcs.first.second << endl;
     //En transmision 2
-    cout << "   " << lcs.second.first-1 << " " << lcs.second.second-1 << endl;
+    cout << "   " << lcs.second.first << " " << lcs.second.second << endl;
 
     return 0;
 }
